@@ -18,15 +18,14 @@ export default React.createClass({
     return (
       <div>
         <h2>Repos</h2>
-        <ul>
+        <ul className="slds-list--dotted">
           <li><NavLink to="/repos/reactjs/react-router">React Router</NavLink></li>
           <li><NavLink to="/repos/facebook/react">React</NavLink></li>
-          {/* add this form */}
           <li>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" placeholder="userName"/> / {' '}
-              <input type="text" placeholder="repo"/>{' '}
-              <button type="submit">Go</button>
+              <input type="text" className="slds-input repos-input" placeholder="userName"/> / {' '}
+              <input type="text" className="slds-input repos-input" placeholder="repo"/>{' '}
+              <button type="submit" className="slds-button slds-button--brand">Go</button>
             </form>
           </li>
         </ul>

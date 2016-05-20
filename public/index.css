@@ -1,3 +1,21 @@
 .active {
   color: green;
 }
+
+.myHeader {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+
+.repos-input {
+  width: 200px !important;
+}
+
+.sideMenu {
+  font-weight: bold;
+  min-width: 200px;
+  min-height: 800px;
+  box-shadow: 2px 0 2px rgba(0,0,0,0.1);
+  z-index: 998;
+  background-color: #e8eaf6;
+}
