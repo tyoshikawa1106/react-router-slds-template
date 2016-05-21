@@ -58,39 +58,13 @@
 
 	var _reactRouter = __webpack_require__(160);
 
-	var _Home = __webpack_require__(222);
+	var _routes = __webpack_require__(224);
 
-	var _Home2 = _interopRequireDefault(_Home);
-
-	var _About = __webpack_require__(223);
-
-	var _About2 = _interopRequireDefault(_About);
-
-	var _Repos = __webpack_require__(224);
-
-	var _Repos2 = _interopRequireDefault(_Repos);
-
-	var _Repo = __webpack_require__(225);
-
-	var _Repo2 = _interopRequireDefault(_Repo);
+	var _routes2 = _interopRequireDefault(_routes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _reactDom.render)(_react2.default.createElement(
-	  _reactRouter.Router,
-	  { history: _reactRouter.browserHistory },
-	  _react2.default.createElement(
-	    _reactRouter.Route,
-	    { path: '/', component: _App2.default },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
-	    _react2.default.createElement(
-	      _reactRouter.Route,
-	      { path: '/repos', component: _Repos2.default },
-	      _react2.default.createElement(_reactRouter.Route, { path: '/repos/:userName/:repoName', component: _Repo2.default })
-	    ),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default })
-	  )
-	), document.getElementById('app'));
+	(0, _reactDom.render)(_react2.default.createElement(_reactRouter.Router, { routes: _routes2.default, history: _reactRouter.browserHistory }), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -19716,11 +19690,15 @@
 
 	var _reactRouter = __webpack_require__(160);
 
-	var _NavLink = __webpack_require__(221);
+	var _Header = __webpack_require__(221);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _NavLink = __webpack_require__(222);
 
 	var _NavLink2 = _interopRequireDefault(_NavLink);
 
-	var _Home = __webpack_require__(222);
+	var _Home = __webpack_require__(223);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
@@ -19731,47 +19709,55 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Ghettohub Issues'
-	      ),
-	      _react2.default.createElement(
-	        'ul',
-	        { role: 'nav' },
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _NavLink2.default,
-	            { to: '/', onlyActiveOnIndex: true },
-	            'Home'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _NavLink2.default,
-	            { to: '/about' },
-	            'About'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _NavLink2.default,
-	            { to: '/repos' },
-	            'Repos'
-	          )
-	        )
-	      ),
+	      { className: 'slds' },
+	      _react2.default.createElement(_Header2.default, null),
 	      _react2.default.createElement(
 	        'div',
-	        null,
-	        this.props.children || _react2.default.createElement(_Home2.default, null)
+	        { className: 'slds-grid' },
+	        _react2.default.createElement(
+	          'nav',
+	          { role: 'nav', className: 'slds-col slds-size--2-of-12 sideMenu' },
+	          _react2.default.createElement(
+	            'ul',
+	            { className: 'slds-list--vertical slds-has-dividers' },
+	            _react2.default.createElement(
+	              'li',
+	              { className: 'slds-list__item nav-list' },
+	              _react2.default.createElement(
+	                _NavLink2.default,
+	                { to: '/', onlyActiveOnIndex: true },
+	                'Home'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              { className: 'slds-list__item nav-list' },
+	              _react2.default.createElement(
+	                _NavLink2.default,
+	                { to: '/about' },
+	                'About'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              { className: 'slds-list__item nav-list' },
+	              _react2.default.createElement(
+	                _NavLink2.default,
+	                { to: '/repos' },
+	                'Repos'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'main',
+	          { className: 'slds-col slds-size--10-of-12' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'slds-m-around--small' },
+	            this.props.children || _react2.default.createElement(_Home2.default, null)
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -25288,6 +25274,59 @@
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: "Header",
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "div",
+	      { className: "slds-page-header myHeader", role: "banner" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "slds-grid" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "slds-col slds-has-flexi-truncate" },
+	          _react2.default.createElement(
+	            "p",
+	            { className: "slds-text-heading--label" },
+	            "React Sample"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "slds-grid" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "slds-grid slds-type-focus slds-no-space" },
+	              _react2.default.createElement(
+	                "h1",
+	                { className: "slds-page-header__title slds-truncate", title: "React Router SLDS Template" },
+	                "React Router SLDS Template"
+	              )
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement("p", { className: "slds-text-body--small slds-page-header__info" })
+	    );
+	  }
+	});
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -25312,7 +25351,7 @@
 	});
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25339,7 +25378,53 @@
 	});
 
 /***/ },
-/* 223 */
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(160);
+
+	var _App = __webpack_require__(159);
+
+	var _App2 = _interopRequireDefault(_App);
+
+	var _About = __webpack_require__(225);
+
+	var _About2 = _interopRequireDefault(_About);
+
+	var _Repos = __webpack_require__(226);
+
+	var _Repos2 = _interopRequireDefault(_Repos);
+
+	var _Repo = __webpack_require__(227);
+
+	var _Repo2 = _interopRequireDefault(_Repo);
+
+	var _Home = __webpack_require__(223);
+
+	var _Home2 = _interopRequireDefault(_Home);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createElement(
+	  _reactRouter.Route,
+	  { path: '/', component: _App2.default },
+	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/repos', component: _Repos2.default },
+	    _react2.default.createElement(_reactRouter.Route, { path: '/repos/:userName/:repoName', component: _Repo2.default })
+	  ),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default })
+	);
+
+/***/ },
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25366,7 +25451,7 @@
 	});
 
 /***/ },
-/* 224 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25379,16 +25464,27 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(160);
-
-	var _NavLink = __webpack_require__(221);
+	var _NavLink = __webpack_require__(222);
 
 	var _NavLink2 = _interopRequireDefault(_NavLink);
+
+	var _reactRouter = __webpack_require__(160);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'Repos',
+
+
+	  // add this method
+	  handleSubmit: function handleSubmit(event) {
+	    event.preventDefault();
+	    var userName = event.target.elements[0].value;
+	    var repo = event.target.elements[1].value;
+	    var path = '/repos/' + userName + '/' + repo;
+	    _reactRouter.browserHistory.push(path);
+	    console.log(path);
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -25400,7 +25496,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'ul',
-	        null,
+	        { className: 'slds-list--dotted' },
 	        _react2.default.createElement(
 	          'li',
 	          null,
@@ -25418,6 +25514,24 @@
 	            { to: '/repos/facebook/react' },
 	            'React'
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.handleSubmit },
+	            _react2.default.createElement('input', { type: 'text', className: 'slds-input repos-input', placeholder: 'userName' }),
+	            ' / ',
+	            ' ',
+	            _react2.default.createElement('input', { type: 'text', className: 'slds-input repos-input', placeholder: 'repo' }),
+	            ' ',
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', className: 'slds-button slds-button--brand' },
+	              'Go'
+	            )
+	          )
 	        )
 	      ),
 	      this.props.children
@@ -25426,10 +25540,10 @@
 	});
 
 /***/ },
-/* 225 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25442,15 +25556,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'Repo',
+	  displayName: "Repo",
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'div',
-	      null,
+	      "div",
+	      { className: "slds-m-top--large slds-text-heading--large" },
 	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        this.props.params.repoName
+	        "div",
+	        { className: "slds-box" },
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          this.props.params.repoName
+	        )
 	      )
 	    );
 	  }
