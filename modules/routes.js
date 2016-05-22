@@ -5,6 +5,7 @@ import About from './routes/About'
 import Repos from './routes/Repos'
 import Repo from './routes/Repo'
 import Home from './routes/Home'
+import Todos from './routes/Todos'
 
 module.exports = (
   <Route path="/" component={App}>
@@ -13,5 +14,6 @@ module.exports = (
       <Route path="/repos/:userName/:repoName" component={Repo}/>
     </Route>
     <Route path="/about" component={About}/>
+    <Route path="/todos" component={Todos}/>
   </Route>
 )

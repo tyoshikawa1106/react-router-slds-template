@@ -15,6 +15,7 @@ export default React.createClass({
               <li className="slds-list__item nav-list"><NavLink to="/" onlyActiveOnIndex={true}>Home</NavLink></li>
               <li className="slds-list__item nav-list"><NavLink to="/about">About</NavLink></li>
               <li className="slds-list__item nav-list"><NavLink to="/repos">Repos</NavLink></li>
+              <li className="slds-list__item nav-list"><NavLink to="/todos">Todos</NavLink></li>
             </ul>
           </nav>
           <main className="slds-col slds-size--10-of-12">
