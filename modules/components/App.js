@@ -2,7 +2,7 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import Header from './Header'
 import NavLink from './NavLink'
-import Home from './Home'
+import Home from '../routes/Home'
 
 export default React.createClass({
   render() {
