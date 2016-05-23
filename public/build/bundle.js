@@ -25262,6 +25262,15 @@
 	                { to: '/todos' },
 	                'Todos'
 	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              { className: 'slds-list__item nav-list' },
+	              _react2.default.createElement(
+	                _NavLink2.default,
+	                { to: '/discussion' },
+	                'Discussion'
+	              )
 	            )
 	          )
 	        ),
@@ -25422,6 +25431,10 @@
 
 	var _Todos2 = _interopRequireDefault(_Todos);
 
+	var _Discussion = __webpack_require__(232);
+
+	var _Discussion2 = _interopRequireDefault(_Discussion);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = _react2.default.createElement(
@@ -25434,7 +25447,8 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: '/repos/:userName/:repoName', component: _Repo2.default })
 	  ),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/todos', component: _Todos2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/todos', component: _Todos2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/discussion', component: _Discussion2.default })
 	);
 
 /***/ },
@@ -25876,6 +25890,312 @@
 	          )
 	        );
 	      }, this)
+	    );
+	  }
+	});
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _DiscussionApp = __webpack_require__(233);
+
+	var _DiscussionApp2 = _interopRequireDefault(_DiscussionApp);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'Discussion',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_DiscussionApp2.default, null)
+	    );
+	  }
+	});
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CommentBox = __webpack_require__(234);
+
+	var _CommentBox2 = _interopRequireDefault(_CommentBox);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'DiscussionApp',
+	  render: function render() {
+	    return _react2.default.createElement(_CommentBox2.default, null);
+	  }
+	});
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CommentForm = __webpack_require__(235);
+
+	var _CommentForm2 = _interopRequireDefault(_CommentForm);
+
+	var _CommentList = __webpack_require__(236);
+
+	var _CommentList2 = _interopRequireDefault(_CommentList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'CommentBox',
+
+
+	  handleCommentSubmit: function handleCommentSubmit(comment) {
+	    var comments = this.state.data;
+	    comment.id = Date.now();
+	    var newComments = comments.concat([comment]);
+	    this.setState({ data: newComments });
+	  },
+	  getInitialState: function getInitialState() {
+	    return { data: [] };
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'commentBox' },
+	      _react2.default.createElement(_CommentForm2.default, { onCommentSubmit: this.handleCommentSubmit }),
+	      _react2.default.createElement(_CommentList2.default, { data: this.state.data })
+	    );
+	  }
+	});
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'CommentForm',
+
+
+	  getInitialState: function getInitialState() {
+	    return { author: '', text: '' };
+	  },
+	  handleAuthorChange: function handleAuthorChange(e) {
+	    this.setState({ author: e.target.value });
+	  },
+	  handleTextChange: function handleTextChange(e) {
+	    this.setState({ text: e.target.value });
+	  },
+	  handleSubmit: function handleSubmit(e) {
+	    e.preventDefault();
+	    var author = this.state.author.trim();
+	    var text = this.state.text.trim();
+	    if (!text || !author) {
+	      return;
+	    }
+	    this.props.onCommentSubmit({ author: author, text: text });
+	    this.setState({ author: '', text: '' });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'slds-box slds-m-bottom--small' },
+	      _react2.default.createElement(
+	        'form',
+	        { onSubmit: this.handleSubmit },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'slds-form-element' },
+	          _react2.default.createElement(
+	            'label',
+	            { className: 'slds-form-element__label', htmlFor: 'text-input-01' },
+	            'NickName'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'slds-form-element__control' },
+	            _react2.default.createElement('input', { type: 'text', className: 'slds-input', id: 'text-input-01', placeholder: 'Your name',
+	              value: this.state.author, onChange: this.handleAuthorChange })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'slds-form-element' },
+	          _react2.default.createElement(
+	            'label',
+	            { className: 'slds-form-element__label', htmlFor: 'text-input-02' },
+	            'Comments'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'slds-form-element__control' },
+	            _react2.default.createElement('input', { type: 'text', className: 'slds-input', placeholder: 'Say something...',
+	              value: this.state.text, onChange: this.handleTextChange })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'slds-m-top--small' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'slds-button slds-button--brand' },
+	            'Post'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Comment = __webpack_require__(237);
+
+	var _Comment2 = _interopRequireDefault(_Comment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'CommentList',
+
+
+	  render: function render() {
+	    var commentNodes = this.props.data.map(function (comment) {
+	      return _react2.default.createElement(_Comment2.default, { author: comment.author, key: comment.id, text: comment.text });
+	    });
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'commentList' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'slds-feed' },
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'slds-feed__list' },
+	          commentNodes
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: "Comment",
+
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "li",
+	      { className: "slds-feed__item" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "slds-media slds-comment slds-hint-parent" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "slds-media__figure" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "slds-avatar slds-avatar--circle slds-avatar--medium" },
+	            _react2.default.createElement(
+	              "a",
+	              { className: "#void", title: "Jason Rodgers" },
+	              _react2.default.createElement("img", { src: "./vendor/salesforce-lightning-design-system/assets/images/avatar1.jpg", alt: "avatar" })
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "slds-media__body" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "slds-grid slds-grid--align-spread slds-has-flexi-truncate" },
+	            _react2.default.createElement(
+	              "p",
+	              { className: "slds-truncate" },
+	              _react2.default.createElement(
+	                "a",
+	                { href: "#void", title: "Design Systems" },
+	                this.props.author
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "slds-comment__content slds-text-longform" },
+	            this.props.text
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
