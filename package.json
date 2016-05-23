@@ -9,7 +9,7 @@
     "start:prod": "webpack && node server.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "compression": "^1.6.2",
     "express": "^4.13.4",
